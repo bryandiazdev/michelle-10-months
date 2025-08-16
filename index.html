@@ -86,8 +86,24 @@
                     <h3>What do we dream of having together?</h3>
                     <div class="options">
                         <button onclick="selectAnswer(this, false)">A gigantic house</button>
-                        <button onclick="selectAnswer(this, true)">2 or 3Beautiful children</button>
+                        <button onclick="selectAnswer(this, true)">2 or 3 Beautiful children</button>
                         <button onclick="selectAnswer(this, false)">Many, many pets</button>
+                    </div>
+                </div>
+                <div class="question" id="q4">
+                    <h3>What is Bryan's favorite color?</h3>
+                    <div class="options">
+                        <button onclick="selectAnswer(this, false)">Red</button>
+                        <button onclick="selectAnswer(this, true)">Blue</button>
+                        <button onclick="selectAnswer(this, false)">Green</button>
+                    </div>
+                </div>
+                <div class="question" id="q5">
+                    <h3>What was the mascot of our elementary school?</h3>
+                    <div class="options">
+                        <button onclick="selectAnswer(this, false)">Tiger</button>
+                        <button onclick="selectAnswer(this, false)">Eagle</button>
+                        <button onclick="selectAnswer(this, true)">Snapper</button>
                     </div>
                 </div>
             </div>
@@ -95,12 +111,47 @@
                 <div class="progress-bar">
                     <div class="progress-fill"></div>
                 </div>
-                <span class="progress-text">Question <span id="current-q">1</span> of 3</span>
+                <span class="progress-text">Question <span id="current-q">1</span> of 5</span>
             </div>
         </div>
     </div>
 
-    <!-- Screen 4: Photo Gallery -->
+    <!-- Screen 4: Interactive Love Messages -->
+    <div class="screen" id="love-messages-screen">
+        <div class="love-messages-content">
+            <h1>Catch My Love Messages! 💕</h1>
+            <p class="love-subtitle">Tap the floating hearts to reveal my messages for you</p>
+            <div class="messages-container">
+                <div class="floating-message-heart" data-message="You make every day brighter just by being in it ✨" style="left: 15%; top: 20%; animation-delay: 0s;">💖</div>
+                <div class="floating-message-heart" data-message="I fall in love with you more every single day 🌹" style="left: 70%; top: 15%; animation-delay: 1s;">💝</div>
+                <div class="floating-message-heart" data-message="Your smile is my favorite sight in the whole world 😊" style="left: 25%; top: 60%; animation-delay: 2s;">💕</div>
+                <div class="floating-message-heart" data-message="I can't wait to call you my wife in 2 months! 👰‍♀️" style="left: 80%; top: 50%; animation-delay: 0.5s;">💍</div>
+                <div class="floating-message-heart" data-message="You are my answered prayer, my miracle from God 🙏" style="left: 45%; top: 30%; animation-delay: 1.5s;">✨</div>
+                <div class="floating-message-heart" data-message="Every moment with you feels like a beautiful dream 💭" style="left: 60%; top: 70%; animation-delay: 2.5s;">💫</div>
+            </div>
+            <div class="message-display">
+                <div class="message-bubble" id="message-bubble">
+                    <p id="message-text">Tap a heart to see a special message! 💖</p>
+                </div>
+            </div>
+            <div class="messages-progress">
+                <p>Messages Found: <span id="messages-found">0</span> / 6</p>
+                <div class="hearts-collected">
+                    <span class="collected-heart">🤍</span>
+                    <span class="collected-heart">🤍</span>
+                    <span class="collected-heart">🤍</span>
+                    <span class="collected-heart">🤍</span>
+                    <span class="collected-heart">🤍</span>
+                    <span class="collected-heart">🤍</span>
+                </div>
+            </div>
+            <button class="next-btn" onclick="nextScreen()" id="love-messages-next" style="opacity: 0.5; pointer-events: none;">
+                Continue to Memories <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Screen 5: Photo Gallery -->
     <div class="screen" id="gallery-screen">
         <div class="gallery-content">
             <h1>Our Beautiful Memories</h1>
@@ -141,7 +192,7 @@
         </div>
     </div>
 
-    <!-- Screen 5: Future Dreams -->
+    <!-- Screen 6: Future Dreams -->
     <div class="screen" id="dreams-screen">
         <div class="dreams-content">
             <h1>Our Future Together</h1>
@@ -185,7 +236,7 @@
         </div>
     </div>
 
-    <!-- Screen 6: Final Declaration -->
+    <!-- Screen 7: Final Declaration -->
     <div class="screen" id="final-screen">
         <div class="final-content">
             <div class="final-animation">

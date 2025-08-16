@@ -9,6 +9,7 @@ const screens = [
     'welcome-screen',
     'anniversary-screen', 
     'quiz-screen',
+    'love-messages-screen',
     'gallery-screen',
     'dreams-screen',
     'final-screen'
@@ -51,7 +52,7 @@ function nextScreen() {
         isTransitioning = true;
         
         // Special handling for quiz screen
-        if (currentScreen === 2 && currentQuestion <= 3) {
+        if (currentScreen === 2 && currentQuestion <= 5) {
             // Don't advance screen, just continue quiz
             isTransitioning = false;
             return;
@@ -91,13 +92,16 @@ function triggerScreenAnimations(screenIndex) {
         case 2: // Quiz screen
             resetQuiz();
             break;
-        case 3: // Gallery screen
+        case 3: // Love Messages screen
+            initializeLoveMessages();
+            break;
+        case 4: // Gallery screen
             resetGallery();
             break;
-        case 4: // Dreams screen
+        case 5: // Dreams screen
             animateDreamCards();
             break;
-        case 5: // Final screen
+        case 6: // Final screen
             animatePromises();
             createFinalHearts();
             break;
@@ -155,7 +159,7 @@ function selectAnswer(button, isCorrect) {
 }
 
 function nextQuestion() {
-    if (currentQuestion < 3) {
+    if (currentQuestion < 5) {
         // Hide current question
         document.getElementById(`q${currentQuestion}`).classList.remove('active');
         
@@ -178,7 +182,7 @@ function updateProgressBar() {
     const progressFill = document.querySelector('.progress-fill');
     const currentQ = document.getElementById('current-q');
     
-    progressFill.style.width = `${(currentQuestion / 3) * 100}%`;
+    progressFill.style.width = `${(currentQuestion / 5) * 100}%`;
     currentQ.textContent = currentQuestion;
 }
 
@@ -186,9 +190,9 @@ function showQuizResults() {
     const quizContainer = document.querySelector('.quiz-container');
     let message = '';
     
-    if (quizScore === 3) {
+    if (quizScore === 5) {
         message = '💕 Perfect! You know us so well! 💕';
-    } else if (quizScore === 2) {
+    } else if (quizScore >= 4) {
         message = '😊 Almost perfect! You know me well! 😊';
     } else {
         message = '😄 We still have so much to learn about each other! 😄';
@@ -197,12 +201,12 @@ function showQuizResults() {
     quizContainer.innerHTML = `
         <div class="quiz-result">
             <h2>${message}</h2>
-            <p>You got ${quizScore} out of 3 correct!</p>
+            <p>You got ${quizScore} out of 5 correct!</p>
         </div>
     `;
     
     // Mark quiz as completed so nextScreen() will work
-    currentQuestion = 4;
+    currentQuestion = 6;
     
     setTimeout(() => {
         nextScreen();
@@ -579,3 +583,91 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Love Messages Screen Functionality
+let messagesFound = 0;
+const totalMessages = 6;
+
+function initializeLoveMessages() {
+    messagesFound = 0;
+    updateMessagesProgress();
+    
+    // Reset all hearts
+    const hearts = document.querySelectorAll('.floating-message-heart');
+    hearts.forEach(heart => {
+        heart.classList.remove('collected');
+        heart.style.pointerEvents = 'auto';
+        heart.onclick = function() {
+            collectMessage(this);
+        };
+    });
+    
+    // Reset collected hearts display
+    const collectedHearts = document.querySelectorAll('.collected-heart');
+    collectedHearts.forEach(heart => {
+        heart.textContent = '🤍';
+        heart.classList.remove('found');
+    });
+    
+    // Reset next button
+    const nextBtn = document.getElementById('love-messages-next');
+    nextBtn.classList.remove('enabled');
+    
+    // Reset message display
+    const messageText = document.getElementById('message-text');
+    messageText.textContent = 'Tap a heart to see a special message! 💖';
+}
+
+function collectMessage(heartElement) {
+    if (heartElement.classList.contains('collected')) return;
+    
+    // Get the message
+    const message = heartElement.getAttribute('data-message');
+    
+    // Show the message
+    showMessage(message);
+    
+    // Mark heart as collected
+    heartElement.classList.add('collected');
+    messagesFound++;
+    
+    // Update progress
+    updateMessagesProgress();
+    
+    // Update collected hearts display
+    const collectedHearts = document.querySelectorAll('.collected-heart');
+    if (collectedHearts[messagesFound - 1]) {
+        collectedHearts[messagesFound - 1].textContent = '💖';
+        collectedHearts[messagesFound - 1].classList.add('found');
+    }
+    
+    // Check if all messages found
+    if (messagesFound >= totalMessages) {
+        setTimeout(() => {
+            const nextBtn = document.getElementById('love-messages-next');
+            nextBtn.classList.add('enabled');
+            showMessage('Amazing! You found all my love messages! 💕✨ Ready to continue our journey?');
+        }, 1000);
+    }
+}
+
+function showMessage(message) {
+    const messageText = document.getElementById('message-text');
+    const messageBubble = document.getElementById('message-bubble');
+    
+    // Add animation class
+    messageBubble.classList.add('new-message');
+    
+    // Update text
+    messageText.textContent = message;
+    
+    // Remove animation class after animation completes
+    setTimeout(() => {
+        messageBubble.classList.remove('new-message');
+    }, 600);
+}
+
+function updateMessagesProgress() {
+    const progressElement = document.getElementById('messages-found');
+    progressElement.textContent = messagesFound;
+}
