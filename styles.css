@@ -7,9 +7,9 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    overflow: hidden;
+    overflow-x: hidden;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    height: 100vh;
+    min-height: 100vh;
     color: white;
     position: relative;
 }
@@ -20,7 +20,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,6 +28,8 @@ body {
     transform: translateX(100%);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .screen.active {
@@ -768,6 +770,12 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .screen {
+        align-items: flex-start;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    
     .main-title {
         font-size: 3rem;
     }
@@ -806,6 +814,9 @@ body {
 @media (max-width: 480px) {
     .screen {
         padding: 15px;
+        align-items: flex-start;
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
     
     .main-title {
@@ -822,6 +833,51 @@ body {
     
     .signature {
         padding: 20px;
+    }
+    
+    .quiz-container {
+        height: auto;
+        min-height: 300px;
+    }
+    
+    .photo-carousel {
+        height: 250px;
+    }
+}
+
+/* Mobile Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .screen {
+        min-height: -webkit-fill-available;
+    }
+    
+    body {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* Additional mobile scrolling fixes */
+@media (max-width: 768px) {
+    html {
+        overflow-x: hidden;
+    }
+    
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .screen {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Ensure content areas can scroll */
+    .anniversary-content,
+    .quiz-content,
+    .gallery-content,
+    .dreams-content,
+    .final-content {
+        max-height: none;
+        overflow: visible;
     }
 }
 
