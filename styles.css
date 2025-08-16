@@ -7,38 +7,33 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
     color: white;
-    position: relative;
+    overflow-x: hidden;
 }
 
 /* Screen Management */
 .screen {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     min-height: 100vh;
-    display: flex;
+    display: none;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 20px;
-    overflow-y: auto;
     box-sizing: border-box;
+    position: relative;
+    overflow-y: auto;
 }
 
 .screen.active {
-    opacity: 1;
-    transform: translateX(0);
+    display: flex;
 }
 
 .screen.prev {
-    transform: translateX(-100%);
+    display: none;
 }
 
 /* Animated Background Elements */
@@ -772,8 +767,10 @@ body {
 @media (max-width: 768px) {
     .screen {
         align-items: flex-start;
+        justify-content: flex-start;
         padding-top: 40px;
         padding-bottom: 40px;
+        min-height: auto;
     }
     
     .main-title {
@@ -815,8 +812,10 @@ body {
     .screen {
         padding: 15px;
         align-items: flex-start;
+        justify-content: flex-start;
         padding-top: 30px;
         padding-bottom: 30px;
+        min-height: auto;
     }
     
     .main-title {
@@ -845,40 +844,22 @@ body {
     }
 }
 
-/* Mobile Safari specific fixes */
-@supports (-webkit-touch-callout: none) {
-    .screen {
-        min-height: -webkit-fill-available;
-    }
-    
-    body {
-        min-height: -webkit-fill-available;
-    }
+/* Mobile scrolling fixes */
+html, body {
+    height: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* Additional mobile scrolling fixes */
-@media (max-width: 768px) {
-    html {
-        overflow-x: hidden;
-    }
-    
-    body {
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .screen {
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    /* Ensure content areas can scroll */
-    .anniversary-content,
-    .quiz-content,
-    .gallery-content,
-    .dreams-content,
-    .final-content {
-        max-height: none;
-        overflow: visible;
-    }
+/* Ensure all content areas are scrollable */
+.anniversary-content,
+.quiz-content,
+.gallery-content,
+.dreams-content,
+.final-content {
+    max-height: none;
+    overflow: visible;
+    width: 100%;
 }
 
 /* Utility Animations */

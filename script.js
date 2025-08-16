@@ -65,21 +65,21 @@ function transitionToScreen(screenIndex) {
     const currentScreenEl = document.getElementById(screens[currentScreen]);
     const nextScreenEl = document.getElementById(screens[screenIndex]);
     
-    // Add exit animation to current screen
-    currentScreenEl.classList.add('prev');
+    // Hide current screen
     currentScreenEl.classList.remove('active');
     
-    // Add entrance animation to next screen
+    // Show next screen
+    nextScreenEl.classList.add('active');
+    currentScreen = screenIndex;
+    
+    // Scroll to top of new screen
+    window.scrollTo(0, 0);
+    
+    // Trigger screen-specific animations
+    triggerScreenAnimations(screenIndex);
+    
     setTimeout(() => {
-        nextScreenEl.classList.add('active');
-        currentScreen = screenIndex;
-        
-        // Trigger screen-specific animations
-        triggerScreenAnimations(screenIndex);
-        
-        setTimeout(() => {
-            isTransitioning = false;
-        }, 800);
+        isTransitioning = false;
     }, 100);
 }
 
