@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Beautiful Michelle ❤️</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Screen 1: Welcome -->
+    <div class="screen active" id="welcome-screen">
+        <div class="stars"></div>
+        <div class="floating-hearts"></div>
+        <div class="welcome-content">
+            <h1 class="main-title">Hello Beautiful</h1>
+            <h2 class="subtitle">Michelle Diana Huertas</h2>
+            <p class="welcome-text">I have something special to share with you...</p>
+            <div class="welcome-animation">
+                <div class="heart-pulse"></div>
+            </div>
+            <button class="next-btn" onclick="nextScreen()">
+                <i class="fas fa-heart"></i> Begin Our Journey
+            </button>
+        </div>
+    </div>
+
+    <!-- Screen 2: Anniversary -->
+    <div class="screen" id="anniversary-screen">
+        <div class="anniversary-content">
+            <div class="date-counter">
+                <h1>10 Months</h1>
+                <p>of pure happiness together</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-delay="0">
+                    <div class="timeline-icon">💕</div>
+                    <h3>Our First Hello</h3>
+                    <p>The moment that changed everything</p>
+                </div>
+                <div class="timeline-item" data-delay="1">
+                    <div class="timeline-icon">🌟</div>
+                    <h3>First Date</h3>
+                    <p>When I knew you were the one</p>
+                </div>
+                <div class="timeline-item" data-delay="2">
+                    <div class="timeline-icon">💍</div>
+                    <h3>The Proposal</h3>
+                    <p>You said yes to forever</p>
+                </div>
+                <div class="timeline-item" data-delay="3">
+                    <div class="timeline-icon">👰</div>
+                    <h3>In 2 Months</h3>
+                    <p>We become husband and wife</p>
+                </div>
+            </div>
+            <button class="next-btn" onclick="nextScreen()">
+                Continue <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Screen 3: Love Quiz -->
+    <div class="screen" id="quiz-screen">
+        <div class="quiz-content">
+            <h1>How Well Do You Know Us? 💕</h1>
+            <div class="quiz-container">
+                <div class="question active" id="q1">
+                    <h3>What's my full name?</h3>
+                    <div class="options">
+                        <button onclick="selectAnswer(this, false)">Bryan Alexander Rodriguez</button>
+                        <button onclick="selectAnswer(this, true)">Bryan Alexander Diaz</button>
+                        <button onclick="selectAnswer(this, false)">Bryan Antonio Diaz</button>
+                    </div>
+                </div>
+                <div class="question" id="q2">
+                    <h3>What do we both believe in?</h3>
+                    <div class="options">
+                        <button onclick="selectAnswer(this, false)">Destiny</button>
+                        <button onclick="selectAnswer(this, true)">God</button>
+                        <button onclick="selectAnswer(this, false)">Luck</button>
+                    </div>
+                </div>
+                <div class="question" id="q3">
+                    <h3>What do we dream of having together?</h3>
+                    <div class="options">
+                        <button onclick="selectAnswer(this, false)">A gigantic house</button>
+                        <button onclick="selectAnswer(this, true)">2 or 3Beautiful children</button>
+                        <button onclick="selectAnswer(this, false)">Many, many pets</button>
+                    </div>
+                </div>
+            </div>
+            <div class="quiz-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">Question <span id="current-q">1</span> of 3</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 4: Photo Gallery -->
+    <div class="screen" id="gallery-screen">
+        <div class="gallery-content">
+            <h1>Our Beautiful Memories</h1>
+            <p class="gallery-subtitle">Swipe through our journey together</p>
+            <div class="photo-carousel">
+                <div class="photo-container">
+                    <!-- Placeholder for photos - you'll add your actual photos here -->
+                    <div class="photo active">
+                        <img src="images/photo1.jpg" alt="Your First Photo Together" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                        <div class="photo-caption">The beginning of forever</div>
+                    </div>
+                    <div class="photo">
+                        <img src="images/photo2.jpg" alt="Your First Photo Together" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                        <div class="photo-caption">Making memories</div>
+                    </div>
+                    <div class="photo">
+                        <img src="images/photo3.jpg" alt="Your First Photo Together" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                        <div class="photo-caption">She said yes!</div>
+                    </div>
+                    <div class="photo">
+                        <img src="images/photo4.jpg" alt="Your First Photo Together" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                        <div class="photo-caption">Pure joy</div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" onclick="prevPhoto()">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-dots"></div>
+                    <button class="carousel-btn next" onclick="nextPhoto()">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <button class="next-btn" onclick="nextScreen()">
+                Continue Our Story <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Screen 5: Future Dreams -->
+    <div class="screen" id="dreams-screen">
+        <div class="dreams-content">
+            <h1>Our Future Together</h1>
+            <div class="dreams-grid">
+                <div class="dream-card" onclick="activateDream(this)">
+                    <div class="dream-icon">💒</div>
+                    <h3>Our Wedding</h3>
+                    <p>In exactly 2 months, we'll say "I do"</p>
+                    <div class="dream-detail">
+                        <p>The most beautiful day of our lives awaits us. I can't wait to call you my wife.</p>
+                    </div>
+                </div>
+                <div class="dream-card" onclick="activateDream(this)">
+                    <div class="dream-icon">👶</div>
+                    <h3>Our Children</h3>
+                    <p>Little ones who will call us mommy and daddy</p>
+                    <div class="dream-detail">
+                        <p>I dream of seeing your beautiful eyes in our children, teaching them about God's love together.</p>
+                    </div>
+                </div>
+                <div class="dream-card" onclick="activateDream(this)">
+                    <div class="dream-icon">🏡</div>
+                    <h3>Our Home</h3>
+                    <p>A place filled with love and laughter</p>
+                    <div class="dream-detail">
+                        <p>A home where we'll grow old together, where every corner holds a precious memory.</p>
+                    </div>
+                </div>
+                <div class="dream-card" onclick="activateDream(this)">
+                    <div class="dream-icon">✨</div>
+                    <h3>Forever</h3>
+                    <p>Growing old together, hand in hand</p>
+                    <div class="dream-detail">
+                        <p>Through every season of life, my love for you will only grow stronger.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="next-btn" onclick="nextScreen()">
+                One More Thing... <i class="fas fa-heart"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Screen 6: Final Declaration -->
+    <div class="screen" id="final-screen">
+        <div class="final-content">
+            <div class="final-animation">
+                <div class="floating-hearts-final"></div>
+                <div class="sparkles"></div>
+            </div>
+            <div class="final-message">
+                <h1 class="final-title">Michelle, My Love</h1>
+                <div class="promises">
+                    <div class="promise" data-delay="0">
+                        <div class="promise-icon">💖</div>
+                        <h2>I Will Always Love You</h2>
+                        <p>With every beat of my heart, through every moment of every day</p>
+                    </div>
+                    <div class="promise" data-delay="1">
+                        <div class="promise-icon">🛡️</div>
+                        <h2>I Will Always Protect You</h2>
+                        <p>You are my treasure, my responsibility, my greatest joy to care for</p>
+                    </div>
+                    <div class="promise" data-delay="2">
+                        <div class="promise-icon">💍</div>
+                        <h2>I Look Forward to Our Marriage</h2>
+                        <p>In two months, we begin forever. I can't wait to be your husband.</p>
+                    </div>
+                </div>
+                <div class="signature">
+                    <p>Forever yours,</p>
+                    <h3>Bryan Alexander Diaz</h3>
+                    <div class="date">❤️ 10 Month Anniversary ❤️</div>
+                </div>
+            </div>
+            <button class="restart-btn" onclick="restartJourney()">
+                <i class="fas fa-redo"></i> Experience Again
+            </button>
+        </div>
+    </div>
+
+    <!-- Background Music Control -->
+    <div class="music-control">
+        <button id="music-toggle" onclick="toggleMusic()">
+            <i class="fas fa-music"></i>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+    <audio id="background-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+</body>
+</html>
